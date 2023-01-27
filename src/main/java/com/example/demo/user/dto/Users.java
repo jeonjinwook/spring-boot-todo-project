@@ -1,5 +1,6 @@
 package com.example.demo.user.dto;
 
+import com.example.demo.todo.dto.Todo;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
@@ -43,6 +44,8 @@ public class Users implements UserDetails { //UserDetails는 시큐리티가 관
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Todo> todos = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

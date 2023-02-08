@@ -15,7 +15,8 @@
 - DBeaver
   - DB 데이터 관리를 위해 사용
 
-## 2. 실행 방법 (macOs 기준)
+## 실행방법
+### 2.1 실행 방법 Intellij (macOs 기준)
 
 1. spring-boot-todo-project 저장소에서 소스를 clone한다
 2. Mysql를 설치 및 실행 
@@ -34,6 +35,25 @@
    - 5.1 라이브러리를 못찾는다면 Intellij File - Invaildate Caches 선택 - Invaildate and restart 클릭
 6. Edit Configuration에서 Application 추가
 7. Run 실행
+
+### 2.2 Docker
+
+1. spring-boot-todo-project 저장소에서 소스를 clone한다
+2. Mysql를 설치 및 실행
+    - 2.1 터미널에서 brew install mysql 입력해서 설치
+    - 2.2 터미널에서 mysql -u root -p 입력 후 비밀번호 입력
+    - 2.3 CREATE DATABASE todo_db DEFAULT CHARACTER SET UTF8; 입력
+    - 2.4 CREATE USER 'todo'@'%' identified by 'todoProject#'; 입력
+    - 2.5 GRANT ALL PRIVILEGES ON todo_db.* TO 'todo'@'%'; 입력
+    - 2.6 flush privileges; 입력
+    - Mysql 실행
+3. Redis 설치 및 실행
+    - 터미널에서 brew intall redis 입력해서 설치
+    - brew services start redis 입력해서 실행
+4. docker 다운로드
+5. spring-boot-todo-project에서 mvn clean package 실행
+6. mvn package jar 생성
+7. docker-compose up -d 실행
 
 ## 3. 주요 기능
 
@@ -62,3 +82,5 @@
 
 나중에 공통 DTO를 추가할 수 가능성이 있어 Aspect를 사용하여 파라미터에 공통 정보 주입함
     - controller에 요청이 들어올때마다 공통으로 사용하는 UserCmnDto를 상속받은 Dto로 공통 정보 주입함
+
+## 5. 구현시 

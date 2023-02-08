@@ -1,0 +1,44 @@
+version: '3'
+services:
+#  mysql-db:
+#    platform: linux/x86_64    # 추가된 라인 M1 에서만 추가
+#    image: mysql:8.0.27
+#    container_name: todo-db
+#    volumes:
+#      - ./data:/var/lib/mysql # -v 옵션 (다렉토리 마운트 설정)
+#    restart: always
+#    command: # 명령어 실행 한글 깨짐 방지
+#      - --character-set-server=utf8mb4
+#      - --collation-server=utf8mb4_unicode_ci
+#    ports:
+#      - 3307:3306
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=something53!
+#      - MYSQL_ROOT_USER=root
+#      - MYSQL_USER=todo
+#      - MYSQL_PASSWORD=todoProject#
+#      - MYSQL_DATABASE=todo_db
+  spring-app:
+    build: ./
+    restart: always
+#    links:
+#      - mysql-db
+#      - redis
+    ports:
+      - 8081:8080
+#    depends_on:
+#      - mysql-db
+#      - redis
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/todo_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=utf8
+      - SPRING_DATASOURCE_USERNAME=todo
+      - SPRING_DATASOURCE_PASSWORD=todoProject#
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#  redis:
+#    image: redis:alpine
+#    container_name: redis_boot
+#    labels:
+#      - "name=redis"
+#      - "mode=standalone"
+#    ports:
+#      - 6380:6379

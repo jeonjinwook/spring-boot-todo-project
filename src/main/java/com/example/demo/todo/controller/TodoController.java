@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class TodoController {
 
-    @Autowired
-    private TodoService todoService;
+    private final TodoService todoService;
 
     @PostMapping("/getTodoList")
     public ResponseEntity<?> getTodoList(@RequestBody RequestTodo todo) {

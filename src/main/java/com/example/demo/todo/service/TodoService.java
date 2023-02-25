@@ -20,12 +20,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class TodoService {
-    @Autowired
-    private TodoRepository todoRepository;
-    @Autowired
-    private ResponseDto responseDto;
-    @Autowired
-    private UserRepository userRepository;
+    private final TodoRepository todoRepository;
+    private final ResponseDto responseDto;
+    private final UserRepository userRepository;
 
     public ResponseEntity<?> getTodoList(RequestTodo todo) {
 

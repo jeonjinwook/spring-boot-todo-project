@@ -20,8 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Users user, HttpServletResponse response) {
         return userService.login(user, response);

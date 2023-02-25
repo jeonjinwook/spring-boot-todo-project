@@ -22,10 +22,13 @@ import javax.servlet.http.HttpServletRequest;
 public class Aspect {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private JwtUtil jwtUtil;
+    private final UserRepository userRepository;
+    private final JwtUtil jwtUtil;
+
+    public Aspect(UserRepository userRepository, JwtUtil jwtUtil) {
+        this.userRepository = userRepository;
+        this.jwtUtil = jwtUtil;
+    }
 
     @Pointcut("execution(public * com.example.demo.*.controller.*.*(..))")
     private void getCmnController() { }

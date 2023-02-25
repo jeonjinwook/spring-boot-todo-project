@@ -17,11 +17,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    @Autowired
-    private CorsConfig corsConfig;
-    @Autowired
-    private JwtUtil jwtUtil;
+    private final CorsConfig corsConfig;
+    private final JwtUtil jwtUtil;
 
+    public SecurityConfig(CorsConfig corsConfig, JwtUtil jwtUtil) {
+
+        this.corsConfig = corsConfig;
+        this.jwtUtil = jwtUtil;
+    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return

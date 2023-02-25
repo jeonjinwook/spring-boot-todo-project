@@ -30,18 +30,12 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 @Service
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private ResponseDto responseDto;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private RedisTemplate redisTemplate;
-    @Autowired
-    private AuthenticationManagerBuilder authenticationManagerBuilder;
-    @Autowired
-    private JwtUtil jwtUtil;
+    private final UserRepository userRepository;
+    private final ResponseDto responseDto;
+    private final PasswordEncoder passwordEncoder;
+    private final RedisTemplate redisTemplate;
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final JwtUtil jwtUtil;
 
     private final String AUTHORIZATION_HEADER = "Authorization";
     private final String BEARER_TYPE = "Bearer ";

@@ -31,13 +31,14 @@ public class JwtUtil {
 
     private final String BEARER_TYPE = "Bearer ";
     private final Key key;
-    @Autowired
-    private CustomUserDetailService userDetailsService;
-    @Autowired
-    private RedisTemplate redisTemplate;
+    private final CustomUserDetailService userDetailsService;
+    private final RedisTemplate redisTemplate;
 
-    public JwtUtil(@Value("${jwt.secret}") String secretKey) {
 
+    public JwtUtil(@Value("${jwt.secret}") String secretKey, CustomUserDetailService userDetailsService, RedisTemplate redisTemplate) {
+
+        this.userDetailsService = userDetailsService;
+        this.redisTemplate = redisTemplate;
         byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
